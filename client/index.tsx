@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react' // Import useEffect and useState from 'react'
+import { useEffect, useState } from 'react' // Import useEffect and useState from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './components/App.tsx'
 import Hacked from './components/Hacked.tsx' // Import the Hacked component
