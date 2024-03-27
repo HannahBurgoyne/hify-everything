@@ -1,6 +1,6 @@
 export default function Hacked() {
   return (
-    <div className="hacked">
+    <div className="hacked format">
       <h1 className="hacked">LUCAS IS COMING FOR YOU M8</h1>
       <img
         width={500}

@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.format {
+  padding-bottom: 5%;
+}
+
 body {
   background-color: #faf8f1;
   color: #0a1520;
