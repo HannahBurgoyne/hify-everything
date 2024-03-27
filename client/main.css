@@ -1,3 +1,11 @@
+.hacked {
+  background-color: red;
+  color: blue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 body {
   background-color: #faf8f1;
   color: #0a1520;
