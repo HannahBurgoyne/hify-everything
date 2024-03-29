@@ -32,29 +32,19 @@ function Home() {
     // }
   }
 
-  // Create a new MutationObserver instance
+  /// Create a new MutationObserver instance
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      // Check if a change is made to the style attribute of any element
-      if (
-        mutation.type === 'attributes' &&
-        mutation.attributeName === 'style'
-      ) {
-        const targetElement = mutation.target as HTMLElement
-        // Check if the background color of the element is changed to black
-        if (targetElement.style.backgroundColor === 'black') {
-          // Trigger function to handle script injection
-          handleScriptInjection()
-        }
-      }
+      // Trigger function to handle script injection for any mutation
+      handleScriptInjection()
     })
   })
 
   // Start observing mutations in the entire document's subtree
   observer.observe(document.documentElement, {
-    attributes: true, // Observe changes to attributes
-    attributeFilter: ['style'], // Only observe changes to the style attribute
-    subtree: true,
+    childList: true, // Observe changes to the child nodes of the target (including added or removed nodes)
+    attributes: true, // Observe changes to attributes of the target or its children
+    subtree: true, // Observe mutations in the entire document's subtree
   })
 
   const splitString = userInput.split('')
