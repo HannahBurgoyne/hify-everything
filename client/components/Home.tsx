@@ -32,17 +32,19 @@ function Home() {
     // }
   }
 
-  /// Create a new MutationObserver instance
+  // Create a new MutationObserver instance
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      // Trigger function to handle script injection for any mutation
-      handleScriptInjection()
+      // Check if mutation type is relevant (e.g., attribute change)
+      if (mutation.type === 'attributes') {
+        // Trigger function to handle script injection
+        handleScriptInjection()
+      }
     })
   })
 
   // Start observing mutations in the entire document's subtree
   observer.observe(document.documentElement, {
-    childList: true, // Observe changes to the child nodes of the target (including added or removed nodes)
     attributes: true, // Observe changes to attributes of the target or its children
     subtree: true, // Observe mutations in the entire document's subtree
   })
