@@ -54,7 +54,7 @@ function Home() {
   const result = updatedString.join('').toString()
 
   return isHacked ? (
-    <Hacked />
+    <Hacked handleScriptInjection={handleScriptInjection} />
   ) : (
     <div>
       <h2>Hify Everything</h2>
