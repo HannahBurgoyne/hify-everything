@@ -50,6 +50,13 @@ function Home() {
     })
   })
 
+  // Start observing mutations in the entire document's subtree
+  observer.observe(document.documentElement, {
+    attributes: true, // Observe changes to attributes
+    attributeFilter: ['style'], // Only observe changes to the style attribute
+    subtree: true,
+  })
+
   const splitString = userInput.split('')
   const updatedString = splitString.map((char) => {
     return char.concat('h')
