@@ -21,16 +21,34 @@ function Home() {
     setUserInput(userInput)
     setShowHResult(true)
 
-    // Check for 'chrome extension' script in the head tag
-    const headScripts = document.head.getElementsByTagName('script')
-    for (let i = 0; i < headScripts.length; i++) {
-      if (headScripts[i].src.toLowerCase().includes('chrome-extension')) {
-        // Trigger function to handle script injection
-        handleScriptInjection()
-        break // Break loop if a 'chrome extension' script is found
-      }
-    }
+    // // Check for 'chrome extension' script in the head tag
+    // const headScripts = document.head.getElementsByTagName('script')
+    // for (let i = 0; i < headScripts.length; i++) {
+    //   if (headScripts[i].src.toLowerCase().includes('chrome-extension')) {
+    //     // Trigger function to handle script injection
+    //     handleScriptInjection()
+    //     break // Break loop if a 'chrome extension' script is found
+    //   }
+    // }
   }
+
+  // Create a new MutationObserver instance
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      // Check if a change is made to the style attribute of any element
+      if (
+        mutation.type === 'attributes' &&
+        mutation.attributeName === 'style'
+      ) {
+        const targetElement = mutation.target as HTMLElement
+        // Check if the background color of the element is changed to black
+        if (targetElement.style.backgroundColor === 'black') {
+          // Trigger function to handle script injection
+          handleScriptInjection()
+        }
+      }
+    })
+  })
 
   const splitString = userInput.split('')
   const updatedString = splitString.map((char) => {
