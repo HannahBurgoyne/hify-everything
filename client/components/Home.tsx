@@ -6,17 +6,16 @@ function Home() {
   const [hResult, setShowHResult] = useState(false)
   const [isHacked, setIsHacked] = useState(false) // State to track if the app is hacked
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setUserInput(e.target.value)
   }
 
   function handleScriptInjection() {
-    // Take appropriate action here (e.g., display warning message, log event)
     console.log('Potentially malicious script detected!')
-    setIsHacked(true) // Update state to indicate the app is hacked
+    setIsHacked(true)
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setUserInput(userInput)
     setShowHResult(true)

@@ -5,19 +5,19 @@ interface Props {
 }
 
 export default function Hacked({ handleScriptInjection }: Props) {
-  useEffect(() => {
-    // Create a new MutationObserver instance
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // Check if mutation type is relevant (e.g., attribute change)
-        if (mutation.type === 'attributes') {
-          // Trigger function to handle script injection
-          handleScriptInjection()
-        }
-      })
+  // Create a new MutationObserver instance
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      // Check if mutation type is relevant (e.g., attribute change)
+      if (mutation.type === 'attributes') {
+        // Trigger function to handle script injection
+        handleScriptInjection()
+      }
     })
+  })
 
-    // Start observing mutations in the entire document's subtree
+  // Start observing mutations in the entire document's subtree
+  useEffect(() => {
     observer.observe(document.documentElement, {
       attributes: true, // Observe changes to attributes of the target or its children
       subtree: true, // Observe mutations in the entire document's subtree
@@ -27,7 +27,8 @@ export default function Hacked({ handleScriptInjection }: Props) {
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, []) // Empty dependency array ensures the effect runs only once
+
   return (
     <div className="hacked format">
       <h1 className="hacked">LUCAS IS COMING FOR YOU M8</h1>
