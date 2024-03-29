@@ -21,33 +21,31 @@ function Home() {
     setUserInput(userInput)
     setShowHResult(true)
 
-    // // Check for 'chrome extension' script in the head tag
-    // const headScripts = document.head.getElementsByTagName('script')
-    // for (let i = 0; i < headScripts.length; i++) {
-    //   if (headScripts[i].src.toLowerCase().includes('chrome-extension')) {
-    //     // Trigger function to handle script injection
-    //     handleScriptInjection()
-    //     break // Break loop if a 'chrome extension' script is found
-    //   }
-    // }
-  }
-
-  // Create a new MutationObserver instance
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      // Check if mutation type is relevant (e.g., attribute change)
-      if (mutation.type === 'attributes') {
+    // Check for 'chrome extension' script in the head tag
+    const headScripts = document.head.getElementsByTagName('script')
+    for (let i = 0; i < headScripts.length; i++) {
+      if (headScripts[i].src.toLowerCase().includes('chrome-extension')) {
         // Trigger function to handle script injection
         handleScriptInjection()
+        break // Break loop if a 'chrome extension' script is found
       }
-    })
-  })
-
-  // Start observing mutations in the entire document's subtree
-  observer.observe(document.documentElement, {
-    attributes: true, // Observe changes to attributes of the target or its children
-    subtree: true, // Observe mutations in the entire document's subtree
-  })
+    }
+    // // Create a new MutationObserver instance
+    // const observer = new MutationObserver((mutations) => {
+    //   mutations.forEach((mutation) => {
+    //     // Check if mutation type is relevant (e.g., attribute change)
+    //     if (mutation.type === 'attributes') {
+    //       // Trigger function to handle script injection
+    //       handleScriptInjection()
+    //     }
+    //   })
+    // })
+    // Start observing mutations in the entire document's subtree
+    // observer.observe(document.documentElement, {
+    //   attributes: true, // Observe changes to attributes of the target or its children
+    //   subtree: true, // Observe mutations in the entire document's subtree
+    // })
+  }
 
   const splitString = userInput.split('')
   const updatedString = splitString.map((char) => {
